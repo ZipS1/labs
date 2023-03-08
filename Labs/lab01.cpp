@@ -27,11 +27,9 @@ void remove2dArray(T** arr, int sizeY)
 }
 
 template <typename T>
-T** inputMatrix(int* sizeYPtr, int* sizeXPtr)
+T** inputMatrix(int& sizeY, int& sizeX)
 {
-    int sizeX = 0, sizeY = 0;
     bool isValidInput = false;
-
     while (isValidInput == false)
     {
         cout << "Enter " << typeid(T).name() << " matrix size(Y X): ";
@@ -55,8 +53,6 @@ T** inputMatrix(int* sizeYPtr, int* sizeXPtr)
         }
     cout << endl;
 
-    *sizeYPtr = sizeY;
-    *sizeXPtr = sizeX;
     return matrix;
 }
 
@@ -98,7 +94,7 @@ template <typename T>
 void processMatrix()
 {
     int sizeX, sizeY;
-    T** matrix = inputMatrix<T>(&sizeY, &sizeX);
+    T** matrix = inputMatrix<T>(sizeY, sizeX);
     outputMatrix<T>(matrix, sizeY, sizeX);
 
     double average = calculateAverageAbove<T>(matrix, sizeY, sizeX);
