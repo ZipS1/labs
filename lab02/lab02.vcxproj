@@ -131,7 +131,7 @@
     <ClCompile Include="shapes.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="container.h" />
+    <ClInclude Include="t-container.h" />
     <ClInclude Include="shapes.h" />
     <ClInclude Include="task.h" />
   </ItemGroup>

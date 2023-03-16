@@ -29,7 +29,7 @@
     <ClInclude Include="shapes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="container.h">
+    <ClInclude Include="t-container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
