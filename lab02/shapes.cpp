@@ -20,10 +20,16 @@ double Parallelogram::getPerimeter()
     return 2 * base + 2 * height / sin(angle);
 }
 
-double Trapezoid::getArea()
+Trapezoid::Trapezoid(double upper, double bottom, double rightside, double leftside) :
+    upperBase(upper), bottomBase(bottom), rightSide(rightside), leftSide(leftside)
 {
     calculateHeight();
+    if (height == 0)
+        throw new std::logic_error("Trapezoid with specified params does not exist");
+}
 
+double Trapezoid::getArea()
+{
     return (bottomBase + upperBase) / 2 * height;
 }
 

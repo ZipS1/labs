@@ -133,7 +133,7 @@
   <ItemGroup>
     <ClInclude Include="t-container.h" />
     <ClInclude Include="shapes.h" />
-    <ClInclude Include="task.h" />
+    <ClInclude Include="menu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,8 @@
 #pragma once
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <iostream>
+#include <stdexcept>
 
 class Shape
 {
@@ -38,8 +40,7 @@ private:
 class Trapezoid : public Shape
 {
 public:
-	Trapezoid(double upper, double bottom, double rightside, double leftside) :
-		upperBase(upper), bottomBase(bottom), rightSide(rightside), leftSide(leftside) {}
+	Trapezoid(double upper, double bottom, double rightside, double leftside);
 	double getArea();
 	double getPerimeter();
 
