@@ -1,7 +1,7 @@
 #include <iostream>
 #include <locale>
 #include <memory>
-#include "menu.h"
+#include "t-menu.h"
 
 using namespace std;
 
@@ -15,7 +15,5 @@ int main()
 	while (choice != Exit)
 		choice = runMenu(cont);
 	
-
-
 	return 0;
 }

@@ -53,10 +53,10 @@ int getUserChoiceOf(const string text, int itemsAmount)
 	return choice;
 }
 
-size_t getUserIndex()
+size_t getUserIndex(size_t size = SIZE_MAX)
 {
 	int index = -1;
-	while (index < 0)
+	while (index < 0 || index >= size)
 	{
 		cout << "Введите индекс: ";
 		cin >> index;
@@ -68,7 +68,7 @@ size_t getUserIndex()
 
 Shape* getUserShape()
 {
-	Shape* shape;
+	Shape* shape = nullptr;
 	int figureChoice = getUserChoiceOf(FIGURE_ITEMS, TopFigureItem - 1);
 	switch (figureChoice)
 	{
@@ -89,9 +89,6 @@ Shape* getUserShape()
 		double botbase, topbase, right, left;
 		cin >> botbase >> topbase >> right >> left;
 		shape = new Trapezoid(topbase, botbase, right, left);
-		break;
-	default:
-		shape = new Circle(1);
 		break;
 	}
 
@@ -138,14 +135,14 @@ template <typename T>
 void runSelectionMenu(Container<T>& cont)
 {
 	cout << "Выбрать...";
-	size_t index = getUserIndex();
+	size_t index = getUserIndex(cont.size());
 	cout << "Элемент" << cont[index] << endl;
 }
 
 void runSelectionMenu(Container<Shape>& cont)
 {
 	cout << "Выбрать..." << endl;
-	size_t index = getUserIndex();
+	size_t index = getUserIndex(cont.size());
 	cout << "Площадь: " << cont[index]->getArea() << endl;
 	cout << "Периметр: " << cont[index]->getPerimeter() << endl;
 	cout << endl;
