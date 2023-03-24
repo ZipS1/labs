@@ -15,8 +15,8 @@ public:
 	T* pop();
 	T* remove(size_t index);
 	size_t size();
-	T* get(size_t const& index);
-	T* operator[](size_t index);
+	T get(size_t const& index);
+	T operator[](size_t index);
 	~Container();
 
 private:
@@ -131,7 +131,7 @@ inline size_t Container<T>::size()
 }
 
 template<class T>
-T* Container<T>::get(size_t const& index)
+T Container<T>::get(size_t const& index)
 {
 	if (index >= counter)
 		throw new std::out_of_range("No such index in container");
@@ -145,11 +145,11 @@ T* Container<T>::get(size_t const& index)
 		curIndex++;
 	}
 
-	return curNode->dataPtr;
+	return *curNode->dataPtr;
 }
 
 template<class T>
-T* Container<T>::operator[](size_t index)
+T Container<T>::operator[](size_t index)
 {
 	return get(index);
 }

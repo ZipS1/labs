@@ -10,7 +10,7 @@ int main()
 	setlocale(LC_ALL, "Russian");
 	cout << LAB_TASK << endl;
 
-	Container<Shape> cont;
+	Container<int> cont;
 	int choice = runMenu(cont);
 	while (choice != Exit)
 		choice = runMenu(cont);

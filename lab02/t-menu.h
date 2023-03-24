@@ -1,12 +1,11 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <vector>
 #include "t-container.h"
-#include "shapes.h"
 
 using namespace std;
 
-#pragma region Texts
 const string LAB_TASK = "Общие требования : в начале программы вывести задание;\n\
 в процессе работы выводить подсказки пользователю\n\
 (что ему нужно ввести, чтобы продолжить выполнение программы).\n\
@@ -22,30 +21,27 @@ const string LAB_TASK = "Общие требования : в начале программы вывести задание;\
 указателей на объекты произвольного класса, в шаблонном классе перегрузить операцию «[]».\n\
 Продемонстрировать работу операторов и использование шаблонного класса с различными классами.\n";
 
-const string MENU_ITEMS = "1 - Добавить...\n\
-2 - Выбрать...\n\
-3 - Удалить...\n\
-4 - Выход\n";
+const vector<string> MENU_ITEMS = { "Добавить...", "Выбрать...", "Удалить...", "Выход" };
+const vector<string> UPDATE_ITEMS = { "по индексу", "в конец" };
 
-const string FIGURE_ITEMS = "1 - Круг\n\
-2 - Параллелограм\n\
-3 - Трапеция\n";
+enum {Add = 1, Select, Remove, Exit};
+enum {AtIndex = 1, AtEnd};
 
-const string UPDATE_ITEMS = "1 - по индексу\n\
-2 - в конец\n";
-#pragma endregion
 
-enum MainMenuItem { Add = 1, Select, Remove, Exit, TopMMItem };
-enum FigureItem { CircleItem = 1, ParallelogramItem, TrapezoidItem, TopFigureItem };
-enum ContainerUpdateItem { AtIndex = 1, AtEnd, TopUpdateItem };
+void outputItems(const vector<string> items)
+{
+	for (size_t i = 1; i <= items.size(); i++)
+		cout << i << " - " << items[i - 1] << endl;
+}
 
-int getUserChoiceOf(const string text, int itemsAmount)
+int getUserChoiceOf(vector<string> items)
 {
 	int choice = -1;
 	
-	while (choice < 1 || choice > itemsAmount)
+	while (choice < 1 || choice > items.size())
 	{
-		cout << text << "Выбор - ";
+		outputItems(items);
+		cout << "Выбор - ";
 		cin >> choice;
 		cout << endl;
 	}
@@ -66,44 +62,15 @@ size_t getUserIndex(size_t size = SIZE_MAX)
 	return index;
 }
 
-Shape* getUserShape()
-{
-	Shape* shape = nullptr;
-	int figureChoice = getUserChoiceOf(FIGURE_ITEMS, TopFigureItem - 1);
-	switch (figureChoice)
-	{
-	case CircleItem:
-		cout << "Введите радиус: ";
-		double radius;
-		cin >> radius;
-		shape = new Circle(radius);
-		break;
-	case ParallelogramItem:
-		cout << "Введите основание, высоту и угол: ";
-		double base, height, angle;
-		cin >> base >> height >> angle;
-		shape = new Parallelogram(base, height, angle);
-		break;
-	case TrapezoidItem:
-		cout << "Введите нижнее, верхнее основания, правую и левую стороны: ";
-		double botbase, topbase, right, left;
-		cin >> botbase >> topbase >> right >> left;
-		shape = new Trapezoid(topbase, botbase, right, left);
-		break;
-	}
-
-	return shape;
-}
-
 template <typename T>
 void runAddMenu(Container<T>& cont)
 {
 	T inp;
 	cout << "Введите новый элемент: ";
 	cin >> inp;
-	T* item = &inp;
+	T* item = new T(inp);
 	cout << "Добавить..." << endl;
-	int choice = getUserChoiceOf(UPDATE_ITEMS, TopUpdateItem - 1);
+	int choice = getUserChoiceOf(UPDATE_ITEMS);
 	switch (choice)
 	{
 	case AtIndex:
@@ -115,44 +82,19 @@ void runAddMenu(Container<T>& cont)
 	}
 }
 
-void runAddMenu(Container<Shape>& cont)
-{
-	Shape* shape = getUserShape();
-	cout << "Добавить..." << endl;
-	int choice = getUserChoiceOf(UPDATE_ITEMS, TopUpdateItem - 1);
-	switch (choice)
-	{
-	case AtIndex:
-		cont.insert(shape, getUserIndex());
-		break;
-	case AtEnd:
-		cont.push(shape);
-		break;
-	}
-}
-
 template <typename T>
 void runSelectionMenu(Container<T>& cont)
 {
-	cout << "Выбрать...";
+	cout << "Выбрать...\n";
 	size_t index = getUserIndex(cont.size());
-	cout << "Элемент" << cont[index] << endl;
-}
-
-void runSelectionMenu(Container<Shape>& cont)
-{
-	cout << "Выбрать..." << endl;
-	size_t index = getUserIndex(cont.size());
-	cout << "Площадь: " << cont[index]->getArea() << endl;
-	cout << "Периметр: " << cont[index]->getPerimeter() << endl;
-	cout << endl;
+	cout << "Элемент: " << cont[index] << endl;
 }
 
 template <class T>
 void runRemoveMenu(Container<T>& cont)
 {
 	cout << "Удалить..." << endl;
-	int choice = getUserChoiceOf(UPDATE_ITEMS, TopUpdateItem - 1);
+	int choice = getUserChoiceOf(UPDATE_ITEMS);
 	switch (choice)
 	{
 	case AtIndex:
@@ -168,7 +110,7 @@ template <class T>
 int runMenu(Container<T>& cont)
 {
 	cout << "Текущий размер контейнера: " << cont.size() << endl;
-	int choice = getUserChoiceOf(MENU_ITEMS, TopMMItem - 1);
+	int choice = getUserChoiceOf(MENU_ITEMS);
 
 	switch (choice)
 	{

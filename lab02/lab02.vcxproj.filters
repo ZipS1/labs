@@ -18,15 +18,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="shapes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="t-menu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="shapes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="t-container.h">
