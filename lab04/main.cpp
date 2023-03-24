@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include "main.h"
 
 using namespace std;
 
@@ -28,12 +27,6 @@ bool insertByValue(vector<int>& vec, int value)
 	return isFound;
 }
 
-int main()
-{
-	inspectVector();
-	inspectVector();
-}
-
 void inspectVector()
 {
 	cout << "Enter elements amount: ";
@@ -58,4 +51,10 @@ void inspectVector()
 		output(vec);
 	else
 		cout << "Value not found";
+}
+
+int main()
+{
+	inspectVector();
+	inspectVector();
 }
