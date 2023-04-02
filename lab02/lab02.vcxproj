@@ -128,8 +128,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="shapes.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="shapes.h" />
     <ClInclude Include="t-container.h" />
     <ClInclude Include="t-menu.h" />
   </ItemGroup>

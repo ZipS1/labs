@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include "t-container.h"
+#include "shapes.h"
 
 using namespace std;
 
