@@ -8,7 +8,7 @@
 using namespace std;
 
 
-const vector<string> MENU_ITEMS = { "Добавить...", "Удалить...", "Вывести по номеру рейса и дате вылета...", "Вывести все..." };
+const vector<string> MENU_ITEMS = { "Add...", "Remove...", "Select by flight num and date...", "Select all...", "Exit..." };
 
 enum { Add = 1, Remove, SelectSpec, SelectAll, Exit };
 
@@ -25,7 +25,7 @@ int getUserChoiceOf(vector<string> items)
 	while (choice < 1 || choice > items.size())
 	{
 		outputItems(items);
-		cout << "Выбор - ";
+		cout << "Choice - ";
 		cin >> choice;
 		cout << endl;
 	}
@@ -37,41 +37,43 @@ void runAddMenu(stack<Ticket>& cont)
 {
 	Ticket newTicket;
 
-	cout << "Введите пункт назначения: ";
+	cout << "Enter destination: ";
 	string destination;
 	cin >> destination;
 	newTicket.destination = destination;
 
-	cout << "Введите номер рейса: ";
+	cout << "Enter flight number: ";
 	string flightNumber;
 	cin >> flightNumber;
 	newTicket.flightNumber = flightNumber;
 
-	cout << "Введите ФИО пассажира: ";
+	cout << "Enter passenger name: ";
 	string name;
 	cin >> name;
 	newTicket.passengerName = name;
 
-	cout << "Введите дату: ";
+	cout << "Enter flight date: ";
 	string date;
 	cin >> date;
 	newTicket.date = date;
+
+	cout << endl;
 
 	cont.push(newTicket);
 }
 
 void outputTicket(Ticket ticket)
 {
-	cout << "Пункт назначения: ";
+	cout << "Destination: ";
 	cout << ticket.destination << endl;
 
-	cout << "Номер рейса: ";
+	cout << "Flight number: ";
 	cout << ticket.flightNumber << endl;
 
-	cout << "ФИО пассажира: ";
+	cout << "Passenger name: ";
 	cout << ticket.passengerName << endl;
 
-	cout << "Дата рейса: ";
+	cout << "Flight date: ";
 	cout << ticket.date << endl;
 	
 	cout << endl;
@@ -79,13 +81,15 @@ void outputTicket(Ticket ticket)
 
 void RunSelectionMenu(stack<Ticket> cont)
 {
-	cout << "Введите номер рейса: ";
+	cout << "Enter flight number: ";
 	string flightNumber;
 	cin >> flightNumber;
 
-	cout << "Введите дату: ";
+	cout << "Enter flight date: ";
 	string date;
 	cin >> date;
+
+	cout << endl;
 
 	for (size_t i = 0; i < cont.size(); i++)
 	{
@@ -104,6 +108,8 @@ void selectAll(stack<Ticket> cont)
 		cont.pop();
 		outputTicket(ticket);
 	}
+	 
+	cout << endl;
 }
 
 int runMenu(stack<Ticket> &cont)

@@ -18,7 +18,6 @@ using namespace std;
 
 int main()
 {
-	setlocale(LC_ALL, "ru");
 	stack<Ticket> cont;
 	int choice = runMenu(cont);
 	while (choice != Exit)
