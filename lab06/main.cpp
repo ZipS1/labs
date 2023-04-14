@@ -50,6 +50,7 @@ void outputSeries(list<int> array, int m)
 
 void inspectList()
 {
+    cout << "--- List ---" << endl;
     list<int> list;
     size_t n;
     cout << "Enter number N: ";
@@ -110,6 +111,7 @@ void outputSeries(deque<int> arr, int m)
 
 void inspectDeque()
 {
+    cout << "--- Deque ---" << endl;
     deque<int> deq;
     size_t n;
     cout << "Enter number N: ";
@@ -133,7 +135,7 @@ void inspectDeque()
 
 int main()
 {
-    // inspectList();
+    inspectList();
     cout << endl;
     inspectDeque();
 }
