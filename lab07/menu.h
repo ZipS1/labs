@@ -91,7 +91,8 @@ void RunSelectionMenu(stack<Ticket> cont)
 
 	cout << endl;
 
-	for (size_t i = 0; i < cont.size(); i++)
+	const size_t stackSize = cont.size();
+	for (size_t i = 0; i < stackSize; i++)
 	{
 		Ticket ticket = cont.top();
 		cont.pop();
@@ -102,7 +103,8 @@ void RunSelectionMenu(stack<Ticket> cont)
 
 void selectAll(stack<Ticket> cont)
 {
-	for (size_t i = 0; i < cont.size(); i++)
+	const size_t stackSize = cont.size();
+	for (size_t i = 0; i < stackSize; i++)
 	{
 		Ticket ticket = cont.top();
 		cont.pop();
