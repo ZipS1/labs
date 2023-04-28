@@ -1,20 +1,56 @@
-﻿// lab08.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+﻿#include <iostream>
+#include <vector>
+#include <set>
+#include <algorithm>
+#include <functional>
 
-#include <iostream>
+#define FILENAME "name.txt"
+
+using namespace std;
+
+/*
+Дана строка name и вектор V с четным количеством элементов. 
+Найти все различные числа, которые входят во вторую половину 
+исходного вектора и при этом отсутствуют в первой половине. 
+Записать найденные числа в текстовый файл с именем name в убывающем порядке, 
+выводя каждое число на новой строке. Использовать алгоритм set_difference 
+для двух вспомогательных множеств и итератора ostream_iterator. 
+Чтобы обеспечить вывод чисел в нужном порядке, 
+при создании множеств и в алгоритме использовать функциональный объект greater.
+*/
+
+void inputVector(vector<int>& nums)
+{
+    size_t n = 1;
+    cout << "Enter even amount of nums: ";
+    while (n % 2 == 1)
+        cin >> n;
+    nums.resize(n);
+
+    cout << "Enter nums: ";
+    for (size_t i = 0; i < n; i++)
+        cin >> nums[i];
+}
+
+void outputVector(vector<int>& vec)
+{
+    cout << "Output array: ";
+    for (size_t i = 0; i < vec.size(); i++)
+        cout << vec[i] << " ";
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    string name;
+    vector<int> nums;
+    vector<int> result;
+
+    inputVector(nums);
+    set<int> a(nums.begin() + nums.size() / 2, nums.end());
+    set<int> b(nums.begin(), nums.begin() + nums.size() / 2);
+    
+
+    set_difference(a.begin(), a.end(), b.begin(), b.end(), inserter(result, result.begin()));
+    outputVector(result);
+    // ostream iterator, greater
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
