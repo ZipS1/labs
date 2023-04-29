@@ -2,7 +2,10 @@
 #include <vector>
 #include <set>
 #include <algorithm>
+#include <fstream>
+#include <iterator>
 #include <functional>
+
 
 #define FILENAME "name.txt"
 
@@ -43,14 +46,13 @@ int main()
 {
     string name;
     vector<int> nums;
-    vector<int> result;
 
     inputVector(nums);
-    set<int> a(nums.begin() + nums.size() / 2, nums.end());
-    set<int> b(nums.begin(), nums.begin() + nums.size() / 2);
+    set<int, greater<int>> a(nums.begin() + nums.size() / 2, nums.end());
+    set<int, greater<int>> b(nums.begin(), nums.begin() + nums.size() / 2);
     
+    ofstream of(FILENAME);
+    ostream_iterator<int> os_it(of, "\n");
 
-    set_difference(a.begin(), a.end(), b.begin(), b.end(), inserter(result, result.begin()));
-    outputVector(result);
-    // ostream iterator, greater
+    set_difference(a.begin(), a.end(), b.begin(), b.end(), os_it, greater<int>{});
 }
